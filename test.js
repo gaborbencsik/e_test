@@ -25,6 +25,14 @@ let d3 = [
   {destination: "budapest", dependency: "paris"}
 ];
 
+let d4 = [
+  {destination: "paris", dependency: false},
+  {destination: "berlin", dependency: "london"},
+  {destination: "london", dependency: "paris"},
+  {destination: "budapest", dependency: "paris"},
+  {destination: "tokio", dependency: "paris"}
+];
+
 test('trying with 3 elements', function (t) {
   let actual = travelPlanner(d2);
   let expected = ["paris", "london", "berlin"];
@@ -44,6 +52,14 @@ test('trying with 6 elements', function (t) {
 test('trying with more dependencies', function (t) {
   let actual = travelPlanner(d3);
   let expected = ["paris", "budapest", "london", "berlin"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test('trying with more dependencies v2', function (t) {
+  let actual = travelPlanner(d4);
+  let expected = ["paris", "tokio", "budapest", "london", "berlin"];
 
   t.deepEqual(actual, expected);
   t.end();
