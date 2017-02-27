@@ -33,7 +33,7 @@ let d4 = [
   {destination: "tokio", dependency: "paris"}
 ];
 
-test('trying with 3 elements', function (t) {
+test('trying with 3 elements', (t) => {
   let actual = travelPlanner(d2);
   let expected = ["paris", "london", "berlin"];
 
@@ -41,7 +41,7 @@ test('trying with 3 elements', function (t) {
   t.end();
 });
 
-test('trying with 6 elements', function (t) {
+test('trying with 6 elements', (t) => {
   let actual = travelPlanner(d1);
   let expected = ["paris", "tokio", "budapest", "london", "berlin", "shanghai"];
 
@@ -49,7 +49,7 @@ test('trying with 6 elements', function (t) {
   t.end();
 });
 
-test('trying with more dependencies', function (t) {
+test('trying with more dependencies', (t) => {
   let actual = travelPlanner(d3);
   let expected = ["paris", "budapest", "london", "berlin"];
 
@@ -57,7 +57,7 @@ test('trying with more dependencies', function (t) {
   t.end();
 });
 
-test('trying with more dependencies v2', function (t) {
+test('trying with more dependencies v2', (t) => {
   let actual = travelPlanner(d4);
   let expected = ["paris", "tokio", "budapest", "london", "berlin"];
 

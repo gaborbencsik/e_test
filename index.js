@@ -15,7 +15,7 @@ let isDepBeforeDest = function (destination, dependency, array) {
 const travelPlanner = function (input) {
   let newArray = [];
 
-  input.forEach( function(route) {
+  input.forEach( (route) => {
     // destination is already on the list
     if (newArray.includes(route.destination)) {
       if (route.dependency) {
