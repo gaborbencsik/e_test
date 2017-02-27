@@ -1,0 +1,23 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gaborbencsik/e_test.git"
+  },
+  "author": "Gabor Bencsik",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gaborbencsik/e_test/issues"
+  },
+  "homepage": "https://github.com/gaborbencsik/e_test#readme",
+  "devDependencies": {
+    "tape": "^4.6.3"
+  }
+}
