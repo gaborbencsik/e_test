@@ -18,14 +18,6 @@ let d4 = [
   {dest: "london", dep: false}
 ];
 
-test('example', function (t) {
-  let actual = 2 + 2;
-  let expected = 4;
-
-  t.equal(actual, expected);
-  t.end();
-});
-
 test('example 2', function (t) {
   let actual = travalPlanner(d4);
   let expected = ["paris", "london", "berlin"];
