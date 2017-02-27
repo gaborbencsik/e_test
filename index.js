@@ -1,25 +1,10 @@
 'use strict';
 
-let d3 = [
-  {dest: "paris", dep: false},
-  {dest: "berlin", dep: "london"},
-  {dest: "london", dep: "budapest"},
-  {dest: "tokio", dep: "paris"},
-  {dest: "shanghai", dep: "berlin"},
-  {dest: "budapest", dep: false}
-];
-
-let d4 = [
-  {dest: "paris", dep: false},
-  {dest: "berlin", dep: "london"},
-  {dest: "london", dep: false}
-];
-
-let isDepBeforeDest = function (dest, dep, array) {
+let isDepBeforeDest = function (destination, dependency, array) {
   let isBefore;
-  let destIndex = array.indexOf(dest);
-  let depIndex = array.indexOf(dep);
-  if (depIndex < destIndex) {
+  let destinationIndex = array.indexOf(destination);
+  let dependencyIndex = array.indexOf(dependency);
+  if (dependencyIndex < destinationIndex) {
     isBefore = true;
   } else {
     isBefore = false;
@@ -27,116 +12,35 @@ let isDepBeforeDest = function (dest, dep, array) {
   return isBefore;
 };
 
-const travalPlanner = function (input) {
+const travelPlanner = function (input) {
   let newArray = [];
 
-  input.forEach( function(elem) {
-    if (newArray.includes(elem.dest)) { // ha benne van dest a listában
-      if (elem.dep) { // van dependencia
-        if (newArray.includes(elem.dep)) { // benne van dep a listában
-          if (!isDepBeforeDest(elem.dest, elem.dep, newArray)) { // dep nincs dest elött
-            newArray.splice(newArray.indexOf(elem.dest), 1);
-            newArray.splice(newArray.indexOf(elem.dep), 0, elem.dest);
-            // action -> move dest dep után
-          } else { // dep dest elött van-e
-            // nothing
+  input.forEach( function(e) {
+    if (newArray.includes(e.destination)) {
+      if (e.dependency) {
+        if (newArray.includes(e.dependency)) {
+          if (!isDepBeforeDest(e.destination, e.dependency, newArray)) {
+            newArray.splice(newArray.indexOf(e.destination), 1);
+            newArray.splice(newArray.indexOf(e.dependency), 0, e.destination);
           };
-        } else { // nincs dep a listában
-          // elem -1-et kezelni
-          newArray.splice(newArray.indexOf(elem.dest), 0, elem.dep)
-          // action -> dep push dest elé
+        } else {
+          newArray.splice(newArray.indexOf(e.destination), 0, e.dependency);
         };
-
-      } else { // ha nincs dependencia
-        // nothing
       };
-    } else { // ha nincs benne a listában dest
-      if (elem.dep) { // van dependencia
-        if (newArray.includes(elem.dep)) { // benne van dep a listában
-          newArray.splice(newArray.indexOf(elem.dep)+1, 0, elem.dest);
-          // action -> push dep után
-        } else { // nincs benne dep a listában
-          newArray.push(elem.dep);
-          newArray.push(elem.dest);
-          // action -> push dep
-          // action -> push dest dep után
+    } else {
+      if (e.dependency) {
+        if (newArray.includes(e.dependency)) {
+          newArray.splice(newArray.indexOf(e.dependency)+1, 0, e.destination);
+        } else {
+          newArray.push(e.dependency);
+          newArray.push(e.destination);
         };
       } else {
-        newArray.push(elem.dest);
-        // action -> push a lista végére
+        newArray.push(e.destination);
       };
     };
-    console.log(newArray);
   });
   return newArray
 };
 
-
-
-
-// let createDestArray = function (input) {
-//   let newArray = []
-//   input.forEach( function (item) {
-//     newArray.push(item.dest);
-//   });
-//   return newArray
-// };
-//
-// let findItemInArray = function (item, array) {
-//   let number = -1;
-//   array.forEach( function (elem, index) {
-//     if (item === elem) {
-//       number = index;
-//     }
-//   })
-//   return number
-// };
-
-// const travalPlanner = function (input) {
-//   let destArray = createDestArray(input);
-//
-//   input.forEach( function (elem) {
-//     let destItemIndex;
-//     let depItemIndex;
-//     if (elem.dep) {
-//       // console.log(elem.dest);
-//       // console.log(destArray);
-//       destItemIndex = findItemInArray(elem.dest, destArray);
-//       depItemIndex = findItemInArray(elem.dep, destArray);
-//       destArray.splice(destItemIndex, 1);
-//       destArray.splice(depItemIndex, 0, elem.dest);
-//       // console.log(destArray);
-//     }
-//   });
-//
-//   return destArray
-// };
-
-//
-// const travalPlanner = function (input) {
-//   let destArray= [];
-//
-//   input.forEach( function (elem) {
-//     if (!elem.dep) {
-//       if (!destArray.includes(elem.dest)) {
-//         destArray.push(elem.dest)
-//       }
-//     }
-//     else if (elem.dep) {
-//       if (destArray.includes(elem.dep)) {
-//         let number = findItemInArray(elem.dep, destArray);
-//         console.log(number);
-//         destArray.splice(number+1, 0, elem.dest);
-//       } else {
-//         destArray.push(elem.dest)
-//       }
-//     }
-//   });
-//
-//   return destArray
-// };
-
-
-console.log(travalPlanner(d3));
-
-module.exports = travalPlanner;
+module.exports = travelPlanner;
