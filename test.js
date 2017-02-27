@@ -28,7 +28,7 @@ test('example 2', function (t) {
 
 test('example 2', function (t) {
   let actual = travalPlanner(d3);
-  let expected = ["tokio", "paris", "budapest", "london", "shanghai", "berlin"];
+  let expected = ["paris", "tokio", "budapest", "london", "berlin", "shanghai"];
 
   t.deepEqual(actual, expected);
   t.end();

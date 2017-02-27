@@ -40,33 +40,34 @@ const travalPlanner = function (input) {
             // action -> move dest dep után
           } else { // dep dest elött van-e
             // nothing
-          }
+          };
         } else { // nincs dep a listában
           // elem -1-et kezelni
-          newArray.splice(newArray.indexOf(elem.dest)-1, 0, elem.dep)
+          newArray.splice(newArray.indexOf(elem.dest), 0, elem.dep)
           // action -> dep push dest elé
-        }
+        };
 
       } else { // ha nincs dependencia
         // nothing
-      }
+      };
     } else { // ha nincs benne a listában dest
       if (elem.dep) { // van dependencia
         if (newArray.includes(elem.dep)) { // benne van dep a listában
-          newArray.splice(newArray.indexOf(elem.dep), 0, elem.dest);
+          newArray.splice(newArray.indexOf(elem.dep)+1, 0, elem.dest);
           // action -> push dep után
         } else { // nincs benne dep a listában
           newArray.push(elem.dep);
           newArray.push(elem.dest);
           // action -> push dep
           // action -> push dest dep után
-        }
+        };
       } else {
         newArray.push(elem.dest);
         // action -> push a lista végére
-      }
-    }
-  })
+      };
+    };
+    console.log(newArray);
+  });
   return newArray
 };
 
