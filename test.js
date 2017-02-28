@@ -33,6 +33,12 @@ let d4 = [
   {destination: "tokio", dependency: "paris"}
 ];
 
+let d5 = [
+  {destination: "paris", dependency: false},
+  {destination: "berlin", dependency: "london"},
+  {destination: "london", dependency: "berlin"}
+]
+
 test('trying with 3 elements', (t) => {
   let actual = travelPlanner(d2);
   let expected = ["paris", "london", "berlin"];
@@ -60,6 +66,14 @@ test('trying with more dependencies', (t) => {
 test('trying with more dependencies v2', (t) => {
   let actual = travelPlanner(d4);
   let expected = ["paris", "tokio", "budapest", "london", "berlin"];
+
+  t.deepEqual(actual, expected);
+  t.end();
+});
+
+test('destinations pointing at each other', (t) => {
+  let actual = travelPlanner(d5);
+  let expected = "error - destinations are pointing each other";
 
   t.deepEqual(actual, expected);
   t.end();
